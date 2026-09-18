@@ -522,6 +522,15 @@ button, input, select, textarea {
     background-position: center;
 }
 
+.page-header-partners {
+    background-image: linear-gradient(135deg, rgba(36, 79, 53, 0.72) 0%, rgba(68, 131, 90, 0.54) 100%), url('arkaplan.jpg');
+    background-size: cover;
+    background-position: center center;
+    min-height: 430px;
+    padding-top: 150px;
+    padding-bottom: 130px;
+}
+
 /* ===== ABOUT CONTENT ===== */
 .about-content {
     padding: 80px 20px;
