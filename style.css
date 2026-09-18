@@ -31,6 +31,7 @@ html {
 body {
     width: 100%;
     max-width: 100%;
+    min-width: 0;
     overflow-x: hidden;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.7;
@@ -55,10 +56,11 @@ button, input, select, textarea {
 }
 
 .container {
-    width: min(1180px, calc(100% - 32px));
+    width: min(1180px, calc(100% - 24px));
     max-width: 1200px;
     margin: 0 auto;
     padding: 0;
+    min-width: 0;
 }
 
 /* ===== NAVIGATION ===== */
@@ -471,15 +473,53 @@ button, input, select, textarea {
 
 /* ===== PAGE HEADER ===== */
 .page-header {
-    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-green) 100%);
+    position: relative;
     color: var(--white);
     padding: 60px 20px;
     text-align: center;
+    background: linear-gradient(135deg, rgba(36, 79, 53, 0.78) 0%, rgba(68, 131, 90, 0.62) 100%);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    min-width: 0;
+}
+
+.page-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(26, 58, 39, 0.42) 0%, rgba(31, 74, 48, 0.2) 100%);
+}
+
+.page-header .container {
+    position: relative;
+    z-index: 1;
+    min-width: 0;
 }
 
 .page-header h1 {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 3vw, 2.5rem);
     margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+.page-header-about {
+    background-image: linear-gradient(135deg, rgba(36, 79, 53, 0.72) 0%, rgba(68, 131, 90, 0.54) 100%), url('products/pilic_sarkuteri.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.page-header-products {
+    background-image: linear-gradient(135deg, rgba(36, 79, 53, 0.72) 0%, rgba(68, 131, 90, 0.54) 100%), url('products/nugget.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.page-header-contact {
+    background-image: linear-gradient(135deg, rgba(36, 79, 53, 0.72) 0%, rgba(68, 131, 90, 0.54) 100%), url('products/sosis.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
 /* ===== ABOUT CONTENT ===== */
@@ -1439,43 +1479,44 @@ button, input, select, textarea {
 }
 
 .footer-brand {
+    margin-bottom: 1.25rem;
+}
+
+.footer-brand-copy {
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    flex-direction: column;
+    gap: 0.35rem;
 }
 
-.footer-brand-mark {
-    width: 52px;
-    height: 52px;
-    border-radius: 16px;
-    display: grid;
-    place-items: center;
-    background: linear-gradient(135deg, var(--primary-color) 0%, #e67e00 100%);
+.footer-brand-copy h3 {
     color: var(--white);
-    font-size: 1.5rem;
-    font-weight: 800;
-    box-shadow: 0 10px 20px rgba(255, 140, 0, 0.25);
+    margin: 0;
+    font-size: clamp(1.35rem, 1.8vw, 1.8rem);
 }
 
-.footer-brand {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 1rem;
+.footer-brand-copy p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.6;
+    font-size: 0.95rem;
 }
 
-.footer-brand-mark {
-    width: 52px;
-    height: 52px;
-    border-radius: 16px;
-    display: grid;
-    place-items: center;
-    background: linear-gradient(135deg, var(--primary-color) 0%, #e67e00 100%);
-    color: var(--white);
-    font-size: 1.5rem;
-    font-weight: 800;
-    box-shadow: 0 10px 20px rgba(255, 140, 0, 0.25);
+.footer-brand-image {
+    width: min(100%, 340px);
+    margin-top: 1rem;
+    border-radius: 0;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: none;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.footer-brand-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 0;
 }
 
 .footer-section h3 {
@@ -1521,6 +1562,10 @@ button, input, select, textarea {
 
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
+    .container {
+        width: min(100%, calc(100% - 18px));
+    }
+
     .hamburger {
         display: flex;
     }
@@ -1709,12 +1754,24 @@ button, input, select, textarea {
 
 @media (max-width: 480px) {
     .container {
-        width: min(100%, calc(100% - 20px));
+        width: min(100%, calc(100% - 16px));
     }
 
     .topbar-inner {
         font-size: 0.72rem;
         padding: 0.6rem 12px;
+    }
+
+    .page-header {
+        padding: 42px 16px;
+    }
+
+    .page-header h1 {
+        font-size: 1.85rem;
+    }
+
+    .page-header p {
+        font-size: 0.92rem;
     }
 
     .hero {
